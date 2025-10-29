@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 const CurrencyConverter = ({ 
   walletAddress, 
   onTransactionSync, 
-  tokenBalances, 
+  tokenBalances = {},    // ✅ مقدار پیش‌فرض اضافه شد
   onBalanceUpdate,
   onConversionComplete
 }) => {
@@ -57,7 +57,7 @@ const CurrencyConverter = ({
 
   const hasSufficientBalance = useCallback(() => {
     if (!fromAmount || fromAmount <= 0) return false;
-    const availableBalance = parseFloat(tokenBalances[fromCurrency] || 0);
+    const availableBalance = parseFloat(tokenBalances?.[fromCurrency] || 0); // ✅ safe access
     return parseFloat(fromAmount) <= availableBalance;
   }, [fromAmount, fromCurrency, tokenBalances]);
 
@@ -74,7 +74,7 @@ const CurrencyConverter = ({
     if (!isValidAmount()) return setError("مقدار معتبر وارد کنید");
     if (!window.ethereum) return setError("MetaMask نصب نشده است");
     if (!hasSufficientBalance()) {
-      return setError(`موجودی USDT کافی نیست! موجودی: ${tokenBalances.USDT || '0.00'} USDT`);
+      return setError(`موجودی USDT کافی نیست! موجودی: ${tokenBalances?.USDT || '0.00'} USDT`);
     }
 
     setConverting(true);
@@ -118,12 +118,12 @@ const CurrencyConverter = ({
 
   return (
     <div className="converter-inline">
-      <h3>💵 Convert USDT to ECG</h3>
+      <h3>💵 تبدیل USDT به ECG</h3>
 
       {error && <div className="error-message">⚠️ {error}</div>}
 
       <div className="input-section">
-        <label>You Pay (USDT)</label>
+        <label>مقدار پرداختی (USDT)</label>
         <input
           type="number"
           value={fromAmount}
@@ -133,11 +133,11 @@ const CurrencyConverter = ({
           step="0.01"
           disabled={converting}
         />
-        <small>Available: {tokenBalances.USDT || "0.00"} USDT</small>
+        <small>موجودی: {tokenBalances?.USDT || "0.00"} USDT</small> {/* ✅ خط اصلاح‌شده */}
       </div>
 
       <div className="output-section">
-        <label>You Receive (ECG)</label>
+        <label>مقدار دریافتی (ECG)</label>
         <input type="text" value={toAmount} readOnly placeholder="0.00" />
       </div>
 
@@ -146,7 +146,7 @@ const CurrencyConverter = ({
         onClick={handleConvertUSDT}
         disabled={!fromAmount || converting || !!error}
       >
-        {converting ? "در حال تبدیل..." : `Convert ${fromAmount || "0"} USDT to ECG`}
+        {converting ? "در حال تبدیل..." : `تبدیل ${fromAmount || "0"} USDT به ECG`}
       </button>
 
       <p className="note">⚠️ لطفاً مطمئن شوید در شبکه BNB Smart Chain هستید.</p>

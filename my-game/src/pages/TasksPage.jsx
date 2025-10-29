@@ -29,7 +29,7 @@ function TasksPage({ tasks, setTasks, setCoins, showSnackbar }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => claimReward("telegram")}
-          className="connect-btnh"
+          className="glass-button"
         >
           Join Telegram
         </a><br /><br /><br /><br /><br />
@@ -38,7 +38,7 @@ function TasksPage({ tasks, setTasks, setCoins, showSnackbar }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => claimReward("instagram")}
-          className="connect-btnh"
+          className="glass-button"
         >
           Follow Instagram
         </a><br /><br /><br /><br /><br />
@@ -47,7 +47,7 @@ function TasksPage({ tasks, setTasks, setCoins, showSnackbar }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => claimReward("website")}
-          className="connect-btnh"
+          className="glass-button"
         >
           Visit Website
         </a><br /><br /><br /><br /><br />
@@ -59,7 +59,7 @@ function TasksPage({ tasks, setTasks, setCoins, showSnackbar }) {
           href={links.whitepaper}
           target="_blank"
           rel="noopener noreferrer"
-          className="connect-btnh"
+          className="glass-button"
         >
           Whitepaper
         </a><br /><br /><br /><br /><br />
@@ -67,7 +67,7 @@ function TasksPage({ tasks, setTasks, setCoins, showSnackbar }) {
           href={links.staking}
           target="_blank"
           rel="noopener noreferrer"
-          className="connect-btnh"
+          className="glass-button"
         >
           Staking Contract Link
         </a><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

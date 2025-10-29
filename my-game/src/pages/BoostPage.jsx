@@ -106,29 +106,12 @@ const BoostPage = () => {
       <div className="container">
         {/* 🔹 عنوان و نمودار همیشه نمایش داده میشه */}
         <div className="wallet-connect-card">
-          <h1>Stake</h1>
+          {/* <h1>Stake</h1> */}
           {/* <img src={Chart} className="cha" alt="chart" /> */}
 
           {/* 🔹 فرم ثابت همیشه نمایش داده میشه */}
           <div className="card-body">
-            <label className="input-label">You Pay (USDT)</label>
-            <input
-              type="number"
-              placeholder="0.00"
-              min="0"
-              step="0.01"
-              className="amount-input"
-              disabled={connectionStatus !== "connected"}
-            />
-
-            <label className="output-label">You Receive (ECG)</label>
-            <input
-              type="text"
-              readOnly
-              placeholder="0.00"
-              className="amount-input"
-              disabled={connectionStatus !== "connected"}
-            />
+            {/* <label className="input-label">You Pay (USDT)</label> */}
 
             {connectionStatus !== "connected" ? (
               <button
